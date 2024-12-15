@@ -1,0 +1,13 @@
+{
+  "q1": {
+    "type": "WrittenQuestion",
+    "questionText": "What is the capital of France?",
+    "correctAnswer": "paris"
+  },
+  "q2": {
+    "type": "MultipleChoiceQuestion",
+    "questionText": "Which is the largest planet?",
+    "choices": [ "Earth", "Mars", "Jupiter", "Venus" ],
+    "correctAnswer": "Jupiter"
+  }
+}
