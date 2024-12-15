@@ -1,22 +1,20 @@
 ﻿module Models
 
 type Question =
-    | WrittenQuestion of questionText: string * correctAnswer: string
-    | MultipleChoiceQuestion of questionText: string * choices: string list * correctAnswer: string
+    | WrittenQuestion of questionText: string * correctAnswer: string * Id: int
+    | MultipleChoiceQuestion of questionText: string * choices: string list * correctAnswer: string * Id: int
 
-// Define a function to get the correct answer for each question type
 let getCorrectAnswer = function
-    | WrittenQuestion(_, correctAnswer) -> correctAnswer
-    | MultipleChoiceQuestion(_, _, correctAnswer) -> correctAnswer
+    | WrittenQuestion(_, correctAnswer, id) -> correctAnswer
+    | MultipleChoiceQuestion(_, _, correctAnswer, id) -> correctAnswer
 
-// Define the structure for each question entry
 type QuestionEntry =
-    { Type: string
+    { Id: int
+      Type: string
       QuestionText: string
       Choices: string list option
       CorrectAnswer: string }
 
-// Define a data type for quiz state that is immutable
 type QuizData = 
     { Questions: Map<string, Question> 
       UserAnswers: Map<string, string> }

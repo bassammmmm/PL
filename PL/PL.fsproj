@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+	  <Compile Include="Utilities.fs" />
 	  <Content Include="questions.json" />
 	  <Compile Include="Models.fs" />
       <Compile Include="QuizData.fs" />
@@ -15,8 +16,6 @@
       <Compile Include="Program.fs" />
 
   </ItemGroup>
-
-  <ItemGroup />
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />

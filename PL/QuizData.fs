@@ -6,24 +6,23 @@ open Newtonsoft.Json
 open Newtonsoft.Json.Linq
 
 let loadQuizFromFile (filePath: string) =
-    let json = File.ReadAllText(filePath) // Reads the JSON content as a string
-    let data = JsonConvert.DeserializeObject<JObject>(json) // Deserialize JSON into JObject
+    let json = File.ReadAllText(filePath)
+    let data = JsonConvert.DeserializeObject<JObject>(json)
     data.Properties()
     |> Seq.map (fun prop ->
         let key = prop.Name
         let value = prop.Value :?> JObject
         let questionType = value.["type"].ToString()
         let question =
+            let questionText = value.["questionText"].ToString()
+            let correctAnswer = value.["correctAnswer"].ToString()
+            let questionId = value.["id"].ToObject<int>()
             match questionType with
             | "WrittenQuestion" ->
-                let questionText = value.["questionText"].ToString()
-                let correctAnswer = value.["correctAnswer"].ToString()
-                WrittenQuestion(questionText, correctAnswer)
+                WrittenQuestion(questionText, correctAnswer, questionId)
             | "MultipleChoiceQuestion" ->
-                let questionText = value.["questionText"].ToString()
                 let choices = value.["choices"].ToObject<string[]>()
-                let correctAnswer = value.["correctAnswer"].ToString()
-                MultipleChoiceQuestion(questionText, List.ofArray choices, correctAnswer)
+                MultipleChoiceQuestion(questionText, List.ofArray choices, correctAnswer, questionId)
             | _ -> failwith "Unknown question type"
         (key, question)
     )
