@@ -36,7 +36,7 @@ let createQuizForm quizData =
             )
             panel.Controls.Add(questionLabel)
             y := !y + 40
-
+            //rendering the UI according to type of question
             match question with
             | WrittenQuestion(_, _, Id) ->
                 let textbox = new TextBox(Location = Point(10, !y), Width = 500, Height = 30)
