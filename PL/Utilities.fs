@@ -1,7 +1,7 @@
 ﻿module Utilities
 open System.Windows.Forms
 open System.Diagnostics
-
+//utilites
 let fetchControlValue (panel: Panel) (name: string) =
     Debug.WriteLine(name);
     let controls = panel.Controls.Find(name, true)
